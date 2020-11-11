@@ -1,7 +1,9 @@
-import React from "react";
-import Logo from "./components/Logo.jsx";
-import CountrySelect from "./components/CountrySelect.jsx";
+import React, { useContext, useEffect } from "react";
+import { Logo, CountryPicker } from './components';
 import { makeStyles, Container, Paper, Grid } from '@material-ui/core';
+import { Context } from "./state/Provider";
+import { getWorldData, getCountriesData, getHistoricalData, getCountriesHistoricalData } from "./services/virusData";
+
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -14,7 +16,25 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
+
 function App() {
+
+	let { setWorldData } = useContext(Context);
+	console.log(setWorldData);
+
+	useEffect(() => {
+
+		Promise.all([
+			getWorldData(),
+			getCountriesData(),
+			getHistoricalData(),
+			getCountriesHistoricalData()
+		]).then(function(responses) {
+			// console.log(responses[1].data);
+			// setCountriesData(responses[1].data);
+		});
+
+	}, []);
 
 	const classes = useStyles();
 
@@ -22,7 +42,7 @@ function App() {
 		<div className="App">
 			<header className="App-header">
 				<Logo />
-				<CountrySelect />
+				<CountryPicker />
 			</header>
 			<Container maxWidth="xl">
 				<Grid container spacing={3}>
