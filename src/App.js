@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Logo, CountryPicker } from './components';
-import { makeStyles, Container, Paper, Grid } from '@material-ui/core';
+import { makeStyles, Container, Paper, Grid, CircularProgress, Typography } from '@material-ui/core';
 import { Context } from "./state/Provider";
 import { getWorldData, getCountriesData, getHistoricalData, getCountriesHistoricalData } from "./services/virusData";
 
@@ -19,8 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
 
-	let { setWorldData } = useContext(Context);
-	console.log(setWorldData);
+	let { state, setWorldData, setCountriesData, setHistoricalData, setCountriesHistoricalData } = useContext(Context);
 
 	useEffect(() => {
 
@@ -30,13 +29,38 @@ function App() {
 			getHistoricalData(),
 			getCountriesHistoricalData()
 		]).then(function(responses) {
-			// console.log(responses[1].data);
-			// setCountriesData(responses[1].data);
+			setWorldData(responses[0].data);
+			setCountriesData(responses[1].data);
+			setHistoricalData(responses[2].data);
+			setCountriesHistoricalData(responses[3].data);
 		});
 
 	}, []);
 
 	const classes = useStyles();
+
+	if (
+		Object.keys(state.worldData).length === 0 ||
+		state.countriesData.length === 0 ||
+		Object.keys(state.historicalData).length === 0 ||
+		Object.keys(state.countriesHistoricalData).length === 0
+	  ) {
+		return (
+		  <div
+			style={{
+			  height: "100vh",
+			  display: "flex",
+			  flexDirection: "column",
+			  justifyContent: "center",
+			  alignItems: "center",
+			}}
+		  >
+			<CircularProgress color="secondary" />
+			<br />
+			<Typography variant="subtitle1">Fetching data...</Typography>
+		  </div>
+		);
+	  }
 
 	return (
 		<div className="App">

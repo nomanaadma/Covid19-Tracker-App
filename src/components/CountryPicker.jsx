@@ -1,28 +1,18 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "../App.css";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from '@material-ui/lab/AutoComplete';
 import { Context } from "../state/Provider";
-import Axios from "axios";
 
 function CountryPicker() {
 
-	const [allCountries, setAllCountries] = React.useState([]);
-	let { setCountry } = useContext(Context);
-
-	useEffect(() => {
-		
-		Axios.get('https://disease.sh/v2/countries').then(function({ data }) {
-			setAllCountries(data);
-		});
-		
-	}, []);
+	let { setCountry, state } = useContext(Context);
 	
 	return (
 		<div className="alignCenter">
 			<Autocomplete
 				id="combo-box-demo"
-				options={allCountries}
+				options={state.countriesData}
 				onChange={(event, newValue) => {
 					setCountry((newValue?.country === undefined) ? null : newValue.country);
 				}}
