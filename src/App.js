@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import { Logo, CountryPicker } from './components';
+import { Logo, CountryPicker, HistoryChart } from './components';
 import { makeStyles, Container, Paper, Grid, CircularProgress, Typography } from '@material-ui/core';
 import { Context } from "./state/Provider";
 import { getWorldData, getCountriesData, getHistoricalData, getCountriesHistoricalData } from "./services/virusData";
+import world from "./world.png";
 
 
 const useStyles = makeStyles(theme => ({
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
 
-	let { state, setWorldData, setCountriesData, setHistoricalData, setCountriesHistoricalData } = useContext(Context);
+	let { state, setCountry, setWorldData, setCountriesData, setHistoricalData, setCountriesHistoricalData } = useContext(Context);
 
 	useEffect(() => {
 
@@ -29,10 +30,14 @@ function App() {
 			getHistoricalData(),
 			getCountriesHistoricalData()
 		]).then(function(responses) {
+			
+			let worldDataObj = {...responses[0].data, country: 'World', countryInfo: { flag: world } };
 			setWorldData(responses[0].data);
-			setCountriesData(responses[1].data);
+			setCountriesData([worldDataObj, ...responses[1].data]);
 			setHistoricalData(responses[2].data);
-			setCountriesHistoricalData(responses[3].data);
+			setCountriesHistoricalData([{country: 'World', timeline: {...responses[2].data} }, ...responses[3].data]);
+			setCountry(worldDataObj);
+			
 		});
 
 	}, []);
@@ -77,7 +82,7 @@ function App() {
 						<Paper className={classes.paper}>xs=6</Paper>
 					</Grid>
 					<Grid item xs={8}>
-						<Paper className={classes.paper}>xs=6</Paper>
+						<Paper className={classes.paper}><HistoryChart /></Paper>
 					</Grid>
 					<Grid item xs={4}>
 						<Paper className={classes.paper}>xs=6</Paper>

@@ -5,17 +5,35 @@ import Autocomplete from '@material-ui/lab/AutoComplete';
 import { Context } from "../state/Provider";
 
 function CountryPicker() {
-
-	let { setCountry, state } = useContext(Context);
 	
+	let { setCountry, state } = useContext(Context);
+
+	const countriesWhichHasHistory = () => {
+		return state.countriesData.filter(({ country }) => {
+			if(country === "World") {
+				return true;
+			} else {
+				return state.countriesHistoricalData.map((c) => c.country).includes(country);
+			}
+		});
+	};
+
 	return (
 		<div className="alignCenter">
 			<Autocomplete
 				id="combo-box-demo"
-				options={state.countriesData}
+				options={countriesWhichHasHistory()}
 				onChange={(event, newValue) => {
-					setCountry((newValue?.country === undefined) ? null : newValue.country);
+					setCountry(newValue || {});
 				}}
+				value={ (state.selectedCountry?.country) ? state.selectedCountry : null}
+				disableClearable={true}
+				renderOption={(option) => (
+					<React.Fragment>
+						<span className="country-flag"><img src={option.countryInfo.flag} alt={option.country} /></span>
+						{option.country}
+					</React.Fragment>
+				)}
 				getOptionLabel={option => option.country}
 				style={{ width: 280, margin: '40px auto' }}
 				renderInput={params => (

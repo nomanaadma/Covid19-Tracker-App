@@ -6,3 +6,8 @@
 .marginTop5 {
 	margin-top: 5px;
 }
+
+.country-flag img {
+	width: 20px;
+	margin-right: 10px;
+}
