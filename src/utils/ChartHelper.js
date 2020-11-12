@@ -89,7 +89,7 @@ export const createChart = (ctx, type, dataset) => {
 			labels: ["Deaths", "Cases", "Recovered"],
 			datasets: [
 				{
-					backgroundColor: ["red", "blue", "green"],
+					backgroundColor: ["rgb(255 0 0)", "#ffc400ad", "#00d023a6"],
 					fill: true,
 					data: dataset,
 				},
