@@ -15,3 +15,15 @@
 body {
 	background-color: #fafafa;
 }
+
+.jvectormap-zoomin, .jvectormap-zoomout {
+	background: #fff;
+    color: #233;
+    box-shadow: 0 0 0 2px rgba(0,0,0,.1);
+    font-size: 26px;
+    padding: 5px 10px 9px 2px;
+}
+
+.jvectormap-zoomout {
+	top: 42px;
+}

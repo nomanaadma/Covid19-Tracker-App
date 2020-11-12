@@ -10,9 +10,11 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.0",
     "chart.js": "^2.9.3",
+    "humanize-plus": "^1.8.2",
     "moment": "^2.29.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-jvectormap": "0.0.16",
     "react-scripts": "3.4.3"
   },
   "scripts": {

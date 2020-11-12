@@ -23,7 +23,7 @@ const PieChart = () => {
 
 		if (chart !== null) chart.destroy();
 		const ctx = pieChartRef.current;
-		setChart(createChart(ctx, checked ? "bar" : "pie", data));
+		setChart(createChart(ctx, checked ? "pie" : "bar", data));
 
 	}, [state]);
 
@@ -31,14 +31,14 @@ const PieChart = () => {
 		setChecked(e.target.checked);
 		if (chart !== null) chart.destroy();
 		const ctx = pieChartRef.current;
-		setChart(createChart(ctx, e.target.checked ? "bar" : "pie", dataset));
+		setChart(createChart(ctx, e.target.checked ? "pie" : "bar", dataset));
 	};
 
 	return (
 		<div style={{ padding: 10 }}>
 			<FormControlLabel
 				control={<Switch checked={checked} onChange={toggleChecked} />}
-				label="Bar Chart"
+				label="Pie Chart"
 			/>
 			<canvas id="pieChart" ref={pieChartRef} width="100%" height="106"></canvas>
 		</div>
