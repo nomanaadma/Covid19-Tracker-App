@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { Logo, CountryPicker, HistoryChart, PieChart, JVectorMap } from './components';
+import { Logo, CountryPicker, HistoryChart, PieChart, JVectorMap, Stats } from './components';
 import { makeStyles, Container, Paper, Grid, CircularProgress, Typography } from '@material-ui/core';
 import { Context } from "./state/Provider";
 import { getWorldData, getCountriesData, getHistoricalData, getCountriesHistoricalData } from "./services/virusData";
 import world from "./world.png";
+import './App.css';
 
 
 const useStyles = makeStyles(theme => ({
@@ -48,7 +49,8 @@ function App() {
 		Object.keys(state.worldData).length === 0 ||
 		state.countriesData.length === 0 ||
 		Object.keys(state.historicalData).length === 0 ||
-		Object.keys(state.countriesHistoricalData).length === 0
+		Object.keys(state.countriesHistoricalData).length === 0 || 
+		Object.keys(state.selectedCountry).length === 0
 	  ) {
 		return (
 		  <div
@@ -75,10 +77,10 @@ function App() {
 			</header>
 			<Container maxWidth="xl">
 				<Grid container spacing={3}>
-					<Grid item xs={4}>
-						<Paper className={classes.paper}>xs=6</Paper>
+					<Grid item xs={12}>
+						<Paper className={classes.paper}><Stats /></Paper>
 					</Grid>
-					<Grid item xs={8}>
+					<Grid item xs={12}>
 						<Paper className={classes.paper}><JVectorMap /></Paper>
 					</Grid>
 					<Grid item xs={9}>

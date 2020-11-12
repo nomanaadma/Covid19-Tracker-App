@@ -13,7 +13,7 @@ const JVectorMap = () => {
 		jVectorRef.current.$mapObject.tip.hide();
 		
 		const country = state.countriesData.find(({ countryInfo }) => countryInfo.iso2 === countryCode);
-		if (country !== null && state.countriesHistoricalData.filter(c => c.country === country.country).length)
+		if (country !== undefined && state.countriesHistoricalData.filter(c => c.country === country.country).length)
 			setCountry(country);
 	};
 
@@ -48,7 +48,7 @@ const JVectorMap = () => {
 				zoomAnimate={true}
 				containerStyle={{
 					width: "100%",
-					height: "460px",
+					height: "600px",
 				}}
 				onRegionClick={(e, countryCode) => handleClick(e, countryCode)}
 				containerClassName="map"
