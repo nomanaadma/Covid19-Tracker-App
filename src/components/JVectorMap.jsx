@@ -39,52 +39,50 @@ const JVectorMap = () => {
 	}
 	
 	return (
-		<div>
-			<VectorMap
-				ref={jVectorRef}
-				map="world_mill"
-				backgroundColor="transparent"
-				zoomOnScroll={true}
-				zoomAnimate={true}
-				containerStyle={{
-					width: "100%",
-					height: "600px",
-				}}
-				onRegionClick={(e, countryCode) => handleClick(e, countryCode)}
-				containerClassName="map"
-				regionStyle={{
-					initial: {
-						fill: "#e4e4e4",
-						"fill-opacity": 0.9,
-						stroke: "#000000",
-						"stroke-width": 0.2,
-						"stroke-opacity": 0.2,
-					},
-					hover: {
-						"fill-opacity": 1,
-						cursor: "pointer",
-						stroke: "#000",
-						"stroke-width": 1,
-						"stroke-opacity": 1,
-					},
-				}}
-				onRegionTipShow={handleHover}
-				series={{
-					regions: [
-						{
-							values: mapData,
-							scale: ["#ffeda0", "#ffc06b", "#ff9c00", "#ff7701", "#e24800", "#cc2200", "#840203"],
-							normalizeFunction: "polynomial",
-							legend: {
-								vertical: false,
-								title: "Cases",
-								labelRender: a => Humanize.compactInteger(a),
-							},
+		<VectorMap
+			ref={jVectorRef}
+			map="world_mill"
+			backgroundColor="transparent"
+			zoomOnScroll={true}
+			zoomAnimate={true}
+			containerStyle={{
+				width: "100%",
+				height: "600px",
+			}}
+			onRegionClick={(e, countryCode) => handleClick(e, countryCode)}
+			containerClassName="map"
+			regionStyle={{
+				initial: {
+					fill: "#e4e4e4",
+					"fill-opacity": 0.9,
+					stroke: "#000000",
+					"stroke-width": 0.2,
+					"stroke-opacity": 0.2,
+				},
+				hover: {
+					"fill-opacity": 1,
+					cursor: "pointer",
+					stroke: "#000",
+					"stroke-width": 1,
+					"stroke-opacity": 1,
+				},
+			}}
+			onRegionTipShow={handleHover}
+			series={{
+				regions: [
+					{
+						values: mapData,
+						scale: ["#ffeda0", "#ffc06b", "#ff9c00", "#ff7701", "#e24800", "#cc2200", "#840203"],
+						normalizeFunction: "polynomial",
+						legend: {
+							vertical: false,
+							title: "Cases",
+							labelRender: a => Humanize.compactInteger(a),
 						},
-					],
-				}}
-			/>
-		</div>
+					},
+				],
+			}}
+		/>
 	);
 };
 export default JVectorMap;

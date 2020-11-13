@@ -23,8 +23,7 @@ function App() {
 
 	let { state, setCountry, setWorldData, setCountriesData, setHistoricalData, setCountriesHistoricalData } = useContext(Context);
 
-	useEffect(() => {
-
+	function componentDidMount() {
 		Promise.all([
 			getWorldData(),
 			getCountriesData(),
@@ -40,8 +39,10 @@ function App() {
 			setCountry(worldDataObj);
 			
 		});
+	}
 
-	}, []);
+	const useMountEffect = (fun) => useEffect(fun, []);
+	useMountEffect(componentDidMount);
 
 	const classes = useStyles();
 
@@ -80,13 +81,13 @@ function App() {
 					<Grid item xs={12}>
 						<Paper className={classes.paper}><Stats /></Paper>
 					</Grid>
-					<Grid item xs={12}>
+					{/* <Grid item xs={12}>
 						<Paper className={classes.paper}><JVectorMap /></Paper>
-					</Grid>
-					<Grid item xs={9}>
+					</Grid> */}
+					<Grid item xs={12} md={8} lg={9}>
 						<Paper className={classes.paper}><HistoryChart /></Paper>
 					</Grid>
-					<Grid item xs={3}>
+					<Grid item xs={12} md={4} lg={3}>
 						<Paper className={classes.paper}><PieChart /></Paper>
 					</Grid>
 				</Grid>

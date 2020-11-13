@@ -12,7 +12,8 @@ const PieChart = () => {
 	const [checked, setChecked] = useState(false);
 	const { state } = useContext(Context);
 
-	useEffect(() => {
+
+	function componentDidMount() {
 		let country = state.selectedCountry;
 
 		const data = [];
@@ -24,8 +25,10 @@ const PieChart = () => {
 		if (chart !== null) chart.destroy();
 		const ctx = pieChartRef.current;
 		setChart(createChart(ctx, checked ? "pie" : "bar", data));
+	}
 
-	}, [state]);
+	const useMountEffect = (fun) => useEffect(fun, [state]);
+	useMountEffect(componentDidMount);
 
 	const toggleChecked = e => {
 		setChecked(e.target.checked);

@@ -1,28 +1,43 @@
 import React, { useEffect, useContext, useRef, useState } from "react";
 import { Context } from "../state/Provider";
 import { mapToAxesEntries, createLineChart } from "../utils/ChartHelper";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import theme from '../services/theme';
+
 
 const HistoryChart = () => {
 
+	const isMd = useMediaQuery(theme.breakpoints.down("md"), { noSsr: true });
+	const isSm = useMediaQuery(theme.breakpoints.down("sm"), { noSsr: true });
+
+	let canvasHeight;
+	if(isSm)
+		canvasHeight = '60%';
+	else if(isMd)
+		canvasHeight = '54.5%';
+	else
+		canvasHeight = '35%';
+
 	const historyChartRef = useRef(null);
 	const [chart, setChart] = useState(null);
-
+	
 	const { state } = useContext(Context);
 
-	useEffect(() => {
+	function componentDidMount() {
 
 		const { selectedCountry, historicalData, countriesHistoricalData  } = state;
-		const ctx = historyChartRef.current;
+		let ctx = historyChartRef.current;
 
 		if(selectedCountry?.country) {
 
-			if (chart !== null) chart.destroy();
 
+			if (chart !== null) chart.destroy();
+			
 			let country = countriesHistoricalData.filter(c => c.country === selectedCountry.country)[0];
 			const deaths = mapToAxesEntries(country.timeline["deaths"], historicalData);
 			const cases = mapToAxesEntries(country.timeline["cases"], historicalData);
 			const recovered = mapToAxesEntries(country.timeline["recovered"], historicalData);
-	
+			
 			const createChart = createLineChart(ctx, [
 				{
 					label: "Deaths",
@@ -45,15 +60,18 @@ const HistoryChart = () => {
 			]);
 
 			setChart(createChart);
+
+
 		}
 		
-	}, [state]);
+	}
+
+	const useMountEffect = (fun) => useEffect(fun, [state]);
+	useMountEffect(componentDidMount);
 
 	return (
-		<div>
-			<canvas id="historyChart" ref={historyChartRef} height="35%" width="100%"></canvas>
-		</div>
-	);
+		<canvas id="historyChart" ref={historyChartRef} height={canvasHeight} width="100%"></canvas>
+	)
 };
 
 export default HistoryChart;
