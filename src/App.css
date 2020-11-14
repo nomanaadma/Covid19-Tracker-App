@@ -17,15 +17,20 @@ body {
 }
 
 .jvectormap-zoomin, .jvectormap-zoomout {
-	background: #fff;
-    color: #233;
-    box-shadow: 0 0 0 2px rgba(0,0,0,.1);
-    font-size: 26px;
-    padding: 5px 10px 9px 2px;
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    width: 15px;
+    font-size: 23px;
+    height: 12px;
+    padding-top: 6px;
+}
+
+.jvectormap-zoomin {
+	padding-top: 5px;
+    padding-bottom: 4px;
 }
 
 .jvectormap-zoomout {
-	top: 42px;
+	top: 38px;
 }
 
 .confirmed {
@@ -63,3 +68,9 @@ body {
 .state-box h5 {
 	font-weight: bold;
 }
+
+@media (max-width: 500px) {
+	.App-header img {
+		width: 85%;
+	}
+} 

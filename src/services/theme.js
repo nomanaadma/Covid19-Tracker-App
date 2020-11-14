@@ -8,14 +8,14 @@ theme.typography.h3 = {
 	fontWeight: '600',
 	padding: '7px',
 	fontSize: '1rem',
-	'@media (max-width:1092px) and (min-width:960px)': {
+	'@media (max-width:1092px)': {
 		fontSize: '0.8rem',
 	},
 };
 
 theme.typography.h5 = {
 	fontSize: '1.5rem',
-	'@media (max-width:1092px) and (min-width:960px)': {
+	'@media (max-width:1092px)': {
 		fontSize: '1.3rem',
 	},
 };

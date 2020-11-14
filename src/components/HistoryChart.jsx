@@ -9,9 +9,12 @@ const HistoryChart = () => {
 
 	const isMd = useMediaQuery(theme.breakpoints.down("md"), { noSsr: true });
 	const isSm = useMediaQuery(theme.breakpoints.down("sm"), { noSsr: true });
+	const isXs = useMediaQuery(theme.breakpoints.down("xs"), { noSsr: true });
 
 	let canvasHeight;
-	if(isSm)
+	if(isXs)
+		canvasHeight = '100%';
+	else if(isSm)
 		canvasHeight = '60%';
 	else if(isMd)
 		canvasHeight = '54.5%';

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Logo, CountryPicker, HistoryChart, PieChart, JVectorMap, Stats } from './components';
+import { Logo, CountryPicker, HistoryChart, PieChart, JVectorMap, Stats, Footer } from './components';
 import { makeStyles, Container, Paper, Grid, CircularProgress, Typography } from '@material-ui/core';
 import { Context } from "./state/Provider";
 import { getWorldData, getCountriesData, getHistoricalData, getCountriesHistoricalData } from "./services/virusData";
@@ -81,9 +81,9 @@ function App() {
 					<Grid item xs={12}>
 						<Paper className={classes.paper}><Stats /></Paper>
 					</Grid>
-					{/* <Grid item xs={12}>
+					<Grid item xs={12}>
 						<Paper className={classes.paper}><JVectorMap /></Paper>
-					</Grid> */}
+					</Grid>
 					<Grid item xs={12} md={8} lg={9}>
 						<Paper className={classes.paper}><HistoryChart /></Paper>
 					</Grid>
@@ -92,6 +92,7 @@ function App() {
 					</Grid>
 				</Grid>
 			</Container>
+			<Footer />
 		</div>
 	);
 }

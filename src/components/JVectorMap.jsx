@@ -2,9 +2,26 @@ import React, { useContext, useRef } from "react";
 import { VectorMap } from "react-jvectormap";
 import { Context } from "../state/Provider";
 import Humanize from "humanize-plus";
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		flexGrow: 1,
+		width: "100%",
+		height: "600px",
+		[theme.breakpoints.down("md")]: {
+			height: "450px",
+		},
+		[theme.breakpoints.down("sm")]: {
+			height: "350px",
+		}
+	},
+}));
 
 const JVectorMap = () => {
 
+	const classes = useStyles();
 	const jVectorRef = useRef(null);
 	const { state, setCountry } = useContext(Context);
 
@@ -45,12 +62,8 @@ const JVectorMap = () => {
 			backgroundColor="transparent"
 			zoomOnScroll={true}
 			zoomAnimate={true}
-			containerStyle={{
-				width: "100%",
-				height: "600px",
-			}}
 			onRegionClick={(e, countryCode) => handleClick(e, countryCode)}
-			containerClassName="map"
+			containerClassName={classes.root}
 			regionStyle={{
 				initial: {
 					fill: "#e4e4e4",
