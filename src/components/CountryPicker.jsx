@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "../App.css";
 import TextField from "@material-ui/core/TextField";
-import Autocomplete from '@material-ui/lab/AutoComplete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Context } from "../state/Provider";
 
 function CountryPicker() {
