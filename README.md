@@ -1,3 +1,19 @@
+# Covid-19 Tracker App
+
+![App Deployment to Surge](https://github.com/nomanaadma/Covid19-Tracker-App/workflows/App%20Deployment%20to%20Surge/badge.svg)
+
+[Project #2](https://docs.google.com/forms/d/e/1FAIpQLSe73k_rbeFDLdZB_mynUVF8f8AZbcG5MkvCRG_omAZuiMPDGg/viewform) for [Panacloud Bootcamp 2020](https://panacloud.github.io/bootcamp-2020/). It's a covid-19's data tracking web app built with React.
+
+![demo](https://raw.githubusercontent.com/nomanaadma/Covid19-Tracker-App/master/public/screenshot.png)
+
+Built with:
+
+- [React](https://github.com/facebook/react/)
+- [Material-UI](https://material-ui.com/)
+- [Chart.js](https://www.chartjs.org/)
+- [react-jvectormap](https://github.com/kadoshms/react-jvectormap)
+- [react-countup](https://github.com/glennreyes/react-countup)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
